@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1a1a2e">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Publicar Rutina"
+            android:textColor="#e94560"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre de la rutina"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:id="@+id/etNombreRutina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ej: Rutina de pecho y tríceps"
+            android:textColor="#ffffff"
+            android:textColorHint="#aaaaaa"
+            android:backgroundTint="#ffffff"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grupo muscular"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:id="@+id/etGrupoMuscular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Ej: Pecho, Espalda, Piernas..."
+            android:textColor="#ffffff"
+            android:textColorHint="#aaaaaa"
+            android:backgroundTint="#ffffff"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descripción de ejercicios"
+            android:textColor="#ffffff"
+            android:layout_marginBottom="4dp"/>
+
+        <EditText
+            android:id="@+id/etDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:hint="Ej: Press banca 4x10, Fondos 3x12..."
+            android:textColor="#ffffff"
+            android:textColorHint="#aaaaaa"
+            android:backgroundTint="#ffffff"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/btnGuardarRutina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Publicar Rutina"
+            android:backgroundTint="#e94560"
+            android:textColor="#ffffff"/>
+
+    </LinearLayout>
+</ScrollView>
