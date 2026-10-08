@@ -30,12 +30,13 @@
             android:id="@+id/etNombreRutina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:padding="12dp"
             android:hint="Ej: Rutina de pecho y tríceps"
             android:textColor="#ffffff"
             android:textColorHint="#aaaaaa"
             android:backgroundTint="#ffffff"
             android:layout_marginBottom="16dp"/>
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -47,6 +48,8 @@
             android:id="@+id/etGrupoMuscular"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:padding="12dp"
             android:hint="Ej: Pecho, Espalda, Piernas..."
             android:textColor="#ffffff"
             android:textColorHint="#aaaaaa"
