@@ -30,22 +30,26 @@
         android:layout_height="wrap_content"
         android:hint="Correo electrónico"
         android:inputType="textEmailAddress"
+        android:autofillHints="username"
+        android:minHeight="48dp"
+        android:padding="12dp"
         android:textColor="#ffffff"
         android:textColorHint="#aaaaaa"
         android:backgroundTint="#ffffff"
         android:layout_marginBottom="16dp"/>
-
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Contraseña"
         android:inputType="textPassword"
+        android:autofillHints="password"
+        android:minHeight="48dp"
+        android:padding="12dp"
         android:textColor="#ffffff"
         android:textColorHint="#aaaaaa"
         android:backgroundTint="#ffffff"
         android:layout_marginBottom="24dp"/>
-
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
