@@ -5,66 +5,56 @@
     android:orientation="vertical"
     android:gravity="center"
     android:padding="32dp"
-    android:background="#1a1a2e">
+    android:background="#121212">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="FitShare"
-        android:textSize="36sp"
-        android:textColor="#e94560"
+        android:textSize="42sp"
         android:textStyle="bold"
-        android:layout_marginBottom="8dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tu comunidad de rutinas"
-        android:textSize="14sp"
-        android:textColor="#ffffff"
-        android:layout_marginBottom="40dp"/>
+        android:textColor="#BB86FC"
+        android:layout_marginBottom="48dp"/>
 
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:hint="Correo electrónico"
+        android:textColorHint="#A0A0A0"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#BB86FC"
         android:inputType="textEmailAddress"
-        android:autofillHints="username"
-        android:minHeight="48dp"
-        android:padding="12dp"
-        android:textColor="#ffffff"
-        android:textColorHint="#aaaaaa"
-        android:backgroundTint="#ffffff"
         android:layout_marginBottom="16dp"/>
+
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:hint="Contraseña"
+        android:textColorHint="#A0A0A0"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#BB86FC"
         android:inputType="textPassword"
-        android:autofillHints="password"
-        android:minHeight="48dp"
-        android:padding="12dp"
-        android:textColor="#ffffff"
-        android:textColorHint="#aaaaaa"
-        android:backgroundTint="#ffffff"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="32dp"/>
+
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Iniciar Sesión"
-        android:backgroundTint="#e94560"
-        android:textColor="#ffffff"
+        android:backgroundTint="#BB86FC"
+        android:textColor="#000000"
+        android:textStyle="bold"
         android:layout_marginBottom="12dp"/>
 
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/tvRegister"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Registrarse"
-        android:backgroundTint="#16213e"
-        android:textColor="#e94560"/>
+        android:text="¿No tienes cuenta? Regístrate aquí"
+        android:textColor="#BB86FC"
+        android:textSize="16sp"
+        android:textStyle="bold"/>
 
 </LinearLayout>

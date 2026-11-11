@@ -1,10 +1,16 @@
-package com.fitshare.app;
+package com.fitshare.app.views;
 
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.fitshare.app.adapters.FotoAdapter;
+import com.fitshare.app.R;
+import com.fitshare.app.adapters.RutinaAdapter;
+import com.fitshare.app.models.Foto;
+import com.fitshare.app.models.Rutina;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;

@@ -1,7 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.FitShare" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Colores principales y de contraste -->
+        <item name="colorPrimary">#BB86FC</item>
+        <item name="colorOnPrimary">#000000</item>
+        <!-- Fondo oscuro puro -->
+        <item name="android:colorBackground">#121212</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <!-- Color claro para mensajes de error y validaciones -->
+        <item name="colorError">#CF6679</item>
     </style>
 </resources>

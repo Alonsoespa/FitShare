@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "801903817027",
-    "project_id": "fitshare-a0aa5",
-    "storage_bucket": "fitshare-a0aa5.firebasestorage.app"
+    "project_number": "13143352967",
+    "project_id": "fitshare-947c7",
+    "storage_bucket": "fitshare-947c7.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:801903817027:android:4fae5bcdb383e8c60a3ff6",
+        "mobilesdk_app_id": "1:13143352967:android:ba698aefe68a3968b7fa22",
         "android_client_info": {
           "package_name": "com.fitshare.app"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDpwnwdzWXGxIvjavueBCDFSv64_HUAQ70"
+          "current_key": "AIzaSyCXbCgy1E8y_ekGy4SPxXl2FkK3jrxLLKs"
         }
       ],
       "services": {

@@ -1,4 +1,4 @@
-package com.fitshare.app;
+package com.fitshare.app.views;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,10 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.fitshare.app.R;
+import com.fitshare.app.adapters.RutinaAdapter;
+import com.fitshare.app.models.Rutina;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -61,9 +65,8 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
-    void cargarRutinas() {
+    private void cargarRutinas() {
         db.collection("rutinas")
-                .orderBy("timestamp", com.google.firebase.firestore.Query.Direction.DESCENDING)
                 .addSnapshotListener((value, error) -> {
                     if (error != null || value == null) return;
                     listaRutinas.clear();

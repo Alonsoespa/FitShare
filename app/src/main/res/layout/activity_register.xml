@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp"
+    android:background="#121212">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear Cuenta"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:textColor="#BB86FC"
+        android:layout_marginBottom="32dp"/>
+
+    <EditText
+        android:id="@+id/etNameReg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Nombre completo"
+        android:textColorHint="#A0A0A0"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#BB86FC"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/etEmailReg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Correo electrónico"
+        android:textColorHint="#A0A0A0"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#BB86FC"
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/etPasswordReg"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Contraseña (mín. 6 caracteres)"
+        android:textColorHint="#A0A0A0"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#BB86FC"
+        android:inputType="textPassword"
+        android:layout_marginBottom="32dp"/>
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registrarse"
+        android:backgroundTint="#BB86FC"
+        android:textColor="#000000"
+        android:textStyle="bold" />
+
+</LinearLayout>
