@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FitShare - Panel Administrativo</title>
+<style>
+:root{--bg:#1a1a2e;--card:#16213e;--line:#0f3460;--red:#e94560;--mut:#aaa}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
+body{background:var(--bg);color:#fff;min-height:100vh}
+.hide{display:none!important}
+#login{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px;width:100%;max-width:380px;display:flex;flex-direction:column;gap:12px}
+.logo{color:var(--red);font-weight:700;font-size:28px}
+input,select{width:100%;background:var(--bg);border:2px solid var(--line);border-radius:10px;padding:10px 12px;color:#fff;font-size:14px;outline:none}
+input:focus,select:focus{border-color:var(--red)}
+button{background:var(--red);color:#fff;border:0;border-radius:20px;padding:9px 18px;font-weight:600;cursor:pointer}
+button.sec{background:transparent;border:1px solid var(--red);color:var(--red)}
+#app{display:flex;min-height:100vh}
+aside{width:210px;background:var(--card);border-right:2px solid var(--red);padding:20px 12px;position:sticky;top:0;height:100vh}
+aside .logo{padding:0 8px 18px}
+aside a{display:block;padding:11px 12px;border-radius:10px;color:var(--mut);cursor:pointer;margin-bottom:4px}
+aside a.on,aside a:hover{background:rgba(233,69,96,.15);color:var(--red)}
+main{flex:1;padding:24px;min-width:0}
+h2{color:var(--red);margin-bottom:16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:22px}
+.kpi{background:var(--card);border-left:4px solid var(--red);border-radius:12px;padding:16px}
+.kpi b{display:block;font-size:30px;color:var(--red)}
+.kpi span{color:var(--mut);font-size:12px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:18px}
+.panel h3{margin-bottom:8px;font-size:15px}
+.bar{display:flex;align-items:center;gap:10px;margin:8px 0;font-size:13px}
+.bar em{width:150px;font-style:normal;color:var(--mut);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar i{display:block;height:12px;background:linear-gradient(90deg,#e94560,#c73652);border-radius:6px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.tools input,.tools select{max-width:260px}
+.wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:9px 8px;border-bottom:1px solid var(--line)}
+th{color:var(--mut);font-size:11px;text-transform:uppercase}
+td img{width:38px;height:38px;border-radius:8px;object-fit:cover}
+td select{padding:5px 8px;width:auto}
+.err{color:var(--red);font-size:13px}
+@media(max-width:760px){#app{flex-direction:column}aside{width:100%;height:auto;position:static;display:flex;flex-wrap:wrap;gap:4px}aside .logo{width:100%;padding-bottom:6px}}
+@media print{aside,.tools,button{display:none!important}body{background:#fff;color:#000}.kpi,.panel{background:#fff;border-color:#999}.kpi b,h2{color:#000}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN ADMIN -->
+<div id="login">
+  <div class="box">
+    <div class="logo">FitShare Admin</div>
+    <input id="email" type="email" placeholder="Correo de administrador">
+    <input id="pass" type="password" placeholder="Contraseña">
+    <button id="btnLogin">Entrar</button>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+
+<!-- PANEL -->
+<div id="app" class="hide">
+  <aside>
+    <div class="logo">FitShare</div>
+    <a data-v="dash" class="on">📊 Dashboard</a>
+    <a data-v="users">👥 Usuarios y roles</a>
+    <a data-v="routines">🏋️ Rutinas</a>
+    <a data-v="reports">📄 Reportes</a>
+    <a data-v="log">🕒 Bitácora</a>
+    <a id="btnOut">🚪 Salir</a>
+  </aside>
+  <main>
+    <section id="v-dash">
+      <h2>Dashboard</h2>
+      <div class="grid" id="kpis"></div>
+      <div class="panel"><h3>Usuarios por rol</h3><div id="bRoles"></div></div>
+      <div class="panel"><h3>Rutinas asignadas por coach</h3><div id="bCoach"></div></div>
+    </section>
+
+    <section id="v-users" class="hide">
+      <h2>Usuarios y roles</h2>
+      <div class="tools">
+        <input id="qUser" placeholder="Buscar por nombre o correo">
+        <select id="fRol"><option value="">Todos los roles</option><option>user</option><option>coach</option><option>administrador</option></select>
+        <button class="sec" id="exUsers">Exportar CSV</button>
+      </div>
+      <div class="panel wrap"><table><thead><tr><th>Foto</th><th>Nombre</th><th>Correo</th><th>Rol</th><th></th></tr></thead><tbody id="tUsers"></tbody></table></div>
+    </section>
+
+    <section id="v-routines" class="hide">
+      <h2>Rutinas</h2>
+      <div class="tools">
+        <input id="qRut" placeholder="Buscar por alumno, coach o músculos">
+        <button class="sec" id="exRut">Exportar CSV</button>
+      </div>
+      <div class="panel wrap"><table><thead><tr><th>Alumno</th><th>Coach</th><th>Músculos</th><th>Días</th><th>Instrucciones</th><th></th></tr></thead><tbody id="tRut"></tbody></table></div>
+    </section>
+
+    <section id="v-reports" class="hide">
+      <h2>Reporte general</h2>
+      <div class="tools"><button id="btnPrint">Imprimir / Guardar PDF</button></div>
+      <div class="panel" id="repBody"></div>
+    </section>
+
+    <section id="v-log" class="hide">
+      <h2>Bitácora de actividades</h2>
+      <div class="panel wrap"><table><thead><tr><th>Fecha</th><th>Usuario</th><th>Acción</th><th>Detalle</th></tr></thead><tbody id="tLog"></tbody></table></div>
+    </section>
+  </main>
+</div>
+
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import {getAuth,signInWithEmailAndPassword,signOut,onAuthStateChanged} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import {getFirestore,initializeFirestore,collection,doc,getDoc,onSnapshot,updateDoc,deleteDoc,addDoc,query,orderBy,limit,serverTimestamp} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+/* PEGA AQUÍ la configuración de tu app WEB (Firebase Console > Configuración del proyecto > Tus apps > </>) */
+const firebaseConfig = {
+  apiKey: "AIzaSyDXQ0l9wgwQfnfwUeOcNxZPgKFNkvF1Gr4",
+  authDomain: "fitshare-947c7.firebaseapp.com",
+  projectId: "fitshare-947c7",
+  appId: "1:13143352967:web:7ce2a6386b00007fb7fa22"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = initializeFirestore(app, { experimentalForceLongPolling: true });
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const ROLES = ["user","coach","administrador"];
+let users = [], routines = [], logs = [], started = false;
+
+/* ---------- Bitácora ---------- */
+async function log(accion, detalle){
+  try{ await addDoc(collection(db,"bitacora"),{usuario:auth.currentUser.email,accion,detalle,timestamp:serverTimestamp()}); }catch(e){ console.error(e); }
+}
+
+/* ---------- Login con verificación de rol ---------- */
+$("btnLogin").onclick = async () => {
+  $("err").textContent = "";
+  try{ await signInWithEmailAndPassword(auth,$("email").value.trim(),$("pass").value); }
+  catch(e){ $("err").textContent = "Credenciales incorrectas"; }
+};
+onAuthStateChanged(auth, async u => {
+  if(!u) return;
+  const d = await getDoc(doc(db,"users",u.uid));
+  if(!d.exists() || d.data().rol !== "administrador"){
+    $("err").textContent = "Acceso denegado: tu cuenta no es administrador";
+    await signOut(auth); return;
+  }
+  $("login").classList.add("hide"); $("app").classList.remove("hide");
+  if(!started){ started = true; iniciar(); log("LOGIN_PANEL","Inicio de sesión en el panel"); }
+});
+$("btnOut").onclick = async () => { await signOut(auth); location.reload(); };
+
+/* ---------- Tiempo real ---------- */
+function iniciar(){
+  onSnapshot(collection(db,"users"), s => { users = s.docs.map(d => ({id:d.id,...d.data()})); pintar(); });
+  onSnapshot(collection(db,"routines"), s => { routines = s.docs.map(d => ({id:d.id,...d.data()})); pintar(); });
+  onSnapshot(query(collection(db,"bitacora"),orderBy("timestamp","desc"),limit(100)), s => { logs = s.docs.map(d => d.data()); pintarLog(); });
+}
+function pintar(){ pintarDash(); pintarUsers(); pintarRut(); pintarReporte(); }
+
+/* ---------- Navegación ---------- */
+document.querySelectorAll("aside a[data-v]").forEach(a => a.onclick = () => {
+  document.querySelectorAll("aside a").forEach(x => x.classList.remove("on")); a.classList.add("on");
+  ["dash","users","routines","reports","log"].forEach(v => $("v-"+v).classList.toggle("hide", v !== a.dataset.v));
+});
+
+/* ---------- Estadísticas ---------- */
+function stats(){
+  const alumnos = users.filter(u => ["user","usuario"].includes(u.rol));
+  const coaches = users.filter(u => u.rol === "coach");
+  const admins = users.filter(u => u.rol === "administrador");
+  const conFoto = alumnos.filter(u => (u.foto_base64||"").length > 0).length;
+  const conRutina = new Set(routines.map(r => (r.alumno_email||"").toLowerCase()));
+  const alumnosConRutina = alumnos.filter(u => conRutina.has((u.correo||"").toLowerCase())).length;
+  const porCoach = {};
+  routines.forEach(r => { const c = r.coach_email || "(sin coach)"; porCoach[c] = (porCoach[c]||0)+1; });
+  return {alumnos,coaches,admins,conFoto,alumnosConRutina,porCoach};
+}
+function bars(obj){
+  const e = Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,6), max = Math.max(1,...e.map(x=>x[1]));
+  return e.length ? e.map(([k,v]) => `<div class="bar"><em title="${esc(k)}">${esc(k)}</em><i style="width:${v/max*55+3}%"></i><b>${v}</b></div>`).join("") : "<span style='color:#aaa'>Sin datos</span>";
+}
+function pintarDash(){
+  const s = stats(), pctFoto = s.alumnos.length ? Math.round(s.conFoto/s.alumnos.length*100) : 0;
+  const k = [[users.length,"Usuarios totales"],[s.alumnos.length,"Alumnos"],[s.coaches.length,"Coaches"],[routines.length,"Rutinas asignadas"],
+    [s.alumnosConRutina,"Alumnos con rutina"],[s.alumnos.length-s.alumnosConRutina,"Alumnos sin rutina"],[pctFoto+"%","Alumnos con foto de progreso"]];
+  $("kpis").innerHTML = k.map(x => `<div class="kpi"><b>${x[0]}</b><span>${x[1]}</span></div>`).join("");
+  $("bRoles").innerHTML = bars({alumnos:s.alumnos.length,coaches:s.coaches.length,administradores:s.admins.length});
+  $("bCoach").innerHTML = bars(s.porCoach);
+}
+
+/* ---------- Usuarios y roles ---------- */
+function usersFiltrados(){
+  const q = $("qUser").value.toLowerCase(), r = $("fRol").value;
+  return users.filter(u => (!r || u.rol === r) && ((u.nombre||"")+" "+(u.correo||"")).toLowerCase().includes(q));
+}
+function pintarUsers(){
+  $("tUsers").innerHTML = usersFiltrados().map(u => {
+    const img = u.foto_base64 ? `<img src="data:image/jpeg;base64,${u.foto_base64.replace(/\s/g,"")}">` : "—";
+    const opts = ROLES.map(r => `<option ${u.rol===r?"selected":""}>${r}</option>`).join("");
+    return `<tr><td>${img}</td><td>${esc(u.nombre)}</td><td>${esc(u.correo)}</td>
+      <td><select data-rol="${u.id}">${opts}</select></td><td><button class="sec" data-del="${u.id}">Eliminar</button></td></tr>`;
+  }).join("") || "<tr><td colspan=5>Sin resultados</td></tr>";
+}
+["qUser","fRol"].forEach(id => $(id).oninput = pintarUsers);
+$("tUsers").onchange = async e => {
+  const id = e.target.dataset.rol; if(!id) return;
+  if(id === auth.currentUser.uid){ alert("No puedes cambiar tu propio rol."); return pintarUsers(); }
+  const u = users.find(x => x.id === id);
+  await updateDoc(doc(db,"users",id),{rol:e.target.value});
+  log("CAMBIO_ROL", `${u.correo}: ${u.rol} -> ${e.target.value}`);
+};
+$("tUsers").onclick = async e => {
+  const id = e.target.dataset.del; if(!id) return;
+  if(id === auth.currentUser.uid) return alert("No puedes eliminar tu propia cuenta.");
+  const u = users.find(x => x.id === id);
+  if(confirm(`¿Eliminar el perfil de ${u.correo}? (la cuenta de acceso en Authentication no se borra)`)){
+    await deleteDoc(doc(db,"users",id)); log("ELIMINAR_USUARIO", u.correo);
+  }
+};
+
+/* ---------- Rutinas ---------- */
+function rutFiltradas(){
+  const q = $("qRut").value.toLowerCase();
+  return routines.filter(r => [r.alumno_email,r.coach_email,r.musculos].join(" ").toLowerCase().includes(q));
+}
+function pintarRut(){
+  $("tRut").innerHTML = rutFiltradas().map(r => `<tr><td>${esc(r.alumno_email)}</td><td>${esc(r.coach_email)}</td><td>${esc(r.musculos)}</td><td>${esc(r.dias)}</td><td>${esc(r.instrucciones)}</td>
+    <td><button class="sec" data-del="${r.id}">Eliminar</button></td></tr>`).join("") || "<tr><td colspan=6>Sin resultados</td></tr>";
+}
+$("qRut").oninput = pintarRut;
+$("tRut").onclick = async e => {
+  const id = e.target.dataset.del; if(!id) return;
+  const r = routines.find(x => x.id === id);
+  if(confirm("¿Eliminar esta rutina?")){ await deleteDoc(doc(db,"routines",id)); log("ELIMINAR_RUTINA", `${r.alumno_email} / ${r.musculos}`); }
+};
+
+/* ---------- Reportes y exportación ---------- */
+function pintarReporte(){
+  const s = stats();
+  $("repBody").innerHTML = `<h3>FitShare - Reporte general</h3><p style="color:#aaa;margin-bottom:12px">Generado: ${new Date().toLocaleString()}</p>
+    <table><tbody>
+    <tr><td>Usuarios totales</td><td>${users.length}</td></tr><tr><td>Alumnos</td><td>${s.alumnos.length}</td></tr>
+    <tr><td>Coaches</td><td>${s.coaches.length}</td></tr><tr><td>Administradores</td><td>${s.admins.length}</td></tr>
+    <tr><td>Rutinas asignadas</td><td>${routines.length}</td></tr><tr><td>Alumnos con rutina</td><td>${s.alumnosConRutina}</td></tr>
+    <tr><td>Alumnos sin rutina</td><td>${s.alumnos.length-s.alumnosConRutina}</td></tr><tr><td>Alumnos con foto de progreso</td><td>${s.conFoto}</td></tr>
+    </tbody></table><h3 style="margin-top:16px">Rutinas por coach</h3>${bars(s.porCoach)}`;
+}
+function csv(nombre, cab, filas){
+  const t = [cab,...filas].map(f => f.map(c => `"${String(c??"").replace(/"/g,'""')}"`).join(",")).join("\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob(["\ufeff"+t],{type:"text/csv;charset=utf-8"}));
+  a.download = nombre; a.click(); log("EXPORTAR", nombre);
+}
+$("exUsers").onclick = () => csv("usuarios.csv",["Nombre","Correo","Rol"],usersFiltrados().map(u => [u.nombre,u.correo,u.rol]));
+$("exRut").onclick = () => csv("rutinas.csv",["Alumno","Coach","Músculos","Días","Instrucciones"],rutFiltradas().map(r => [r.alumno_email,r.coach_email,r.musculos,r.dias,r.instrucciones]));
+$("btnPrint").onclick = () => { log("REPORTE","Impresión / PDF"); window.print(); };
+
+/* ---------- Bitácora ---------- */
+function pintarLog(){
+  $("tLog").innerHTML = logs.map(l => `<tr><td>${l.timestamp ? l.timestamp.toDate().toLocaleString() : "..."}</td><td>${esc(l.usuario)}</td><td>${esc(l.accion)}</td><td>${esc(l.detalle)}</td></tr>`).join("") || "<tr><td colspan=4>Sin actividad</td></tr>";
+}
+</script>
+</body>
+</html>
