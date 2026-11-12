@@ -1,4 +1,4 @@
-package com.fitshare.app;
+package com.fitshare.app.models;
 
 public class Foto {
     private String id;

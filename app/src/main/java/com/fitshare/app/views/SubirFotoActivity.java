@@ -1,6 +1,5 @@
-package com.fitshare.app;
+package com.fitshare.app.views;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -14,6 +13,8 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.fitshare.app.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import java.io.ByteArrayOutputStream;
@@ -43,6 +44,13 @@ public class SubirFotoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Verificar si hay sesión activa
+        if (com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser() == null) {
+            // Si no hay sesión, manda al usuario al Login (MainActivity)
+            startActivity(new android.content.Intent(this, MainActivity.class));
+            finish(); // Cierra esta Activity para que no vuelva atrás presionando el botón "Back"
+            return;
+        }
         setContentView(R.layout.activity_subir_foto);
 
         auth = FirebaseAuth.getInstance();

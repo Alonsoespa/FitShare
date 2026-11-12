@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#121212">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dashboard de Coach"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#BB86FC"
+        android:layout_marginBottom="16dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnAsignarRutina"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="+ Rutina"
+            android:backgroundTint="#03DAC5"
+            android:textColor="#000"
+            android:layout_marginEnd="4dp"/>
+        <Button
+            android:id="@+id/btnVerEstudiantes"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Alumnos"
+            android:backgroundTint="#BB86FC"
+            android:textColor="#000"/>
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvDatosCoach"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#1E1E1E"
+        android:divider="#BB86FC"
+        android:dividerHeight="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnCerrarSesionCoach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cerrar Sesión"
+        android:backgroundTint="#CF6679"
+        android:textColor="#FFF"/>
+</LinearLayout>

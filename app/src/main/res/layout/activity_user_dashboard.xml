@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#121212">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mi Entrenamiento"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#BB86FC"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1. Mi Progreso Actual"
+        android:textColor="#03DAC5"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="24dp">
+
+        <ImageView
+            android:id="@+id/ivProgressPhoto"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="#1E1E1E"
+            android:scaleType="centerCrop"
+            android:layout_marginEnd="16dp"/>
+
+        <Button
+            android:id="@+id/btnSubirFoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subir Foto\npara el Coach"
+            android:backgroundTint="#BB86FC"
+            android:textColor="#000000"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2. Mi Rutina Asignada"
+        android:textColor="#03DAC5"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="12dp"/>
+
+    <ListView
+        android:id="@+id/lvRutinas"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#1E1E1E"
+        android:divider="#BB86FC"
+        android:dividerHeight="1dp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnCerrarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cerrar Sesión"
+        android:backgroundTint="#CF6679"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"/>
+</LinearLayout>

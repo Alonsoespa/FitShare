@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1a1a2e"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Configuración"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp" />
+
+    <EditText
+        android:id="@+id/etNombreConfig"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:inputType="textPersonName"
+        android:hint="Nuevo Nombre"
+        android:textColor="#ffffff"
+        android:textColorHint="#aaaaaa"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/etNuevaPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:hint="Nueva Contraseña (mínimo 6)"
+        android:inputType="textPassword"
+        android:textColor="#ffffff"
+        android:textColorHint="#aaaaaa"
+        android:layout_marginBottom="24dp" />
+
+    <Button
+        android:id="@+id/btnGuardarConfig"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:backgroundTint="#e94560"
+        android:text="Guardar Cambios"
+        android:textColor="#ffffff" />
+
+</LinearLayout>

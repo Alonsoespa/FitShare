@@ -1,4 +1,4 @@
-package com.fitshare.app;
+package com.fitshare.app.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,6 +6,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.fitshare.app.R;
+import com.fitshare.app.models.Rutina;
+
 import java.util.List;
 
 public class RutinaAdapter extends RecyclerView.Adapter<RutinaAdapter.RutinaViewHolder> {
@@ -28,7 +32,7 @@ public class RutinaAdapter extends RecyclerView.Adapter<RutinaAdapter.RutinaView
     public void onBindViewHolder(@NonNull RutinaViewHolder holder, int position) {
         Rutina rutina = listaRutinas.get(position);
         holder.tvNombre.setText(rutina.getNombre());
-        holder.tvGrupo.setText(rutina.getGrupoMuscular());
+        holder.tvGrupo.setText(rutina .getGrupoMuscular());
         holder.tvDescripcion.setText(rutina.getDescripcion());
         holder.tvUsuario.setText("Por: " + rutina.getUsuarioEmail());
     }
