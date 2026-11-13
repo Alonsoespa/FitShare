@@ -25,7 +25,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 
 public class UserDashboardActivity extends AppCompatActivity {
-    private Button btnSubirFoto, btnCerrarSesion;
+    private Button btnSubirFoto, btnCerrarSesion, btnVerCatalogoApi; // <-- Botón para la API
     private ListView lvRutinas;
     private ImageView ivProgressPhoto;
     private FirebaseFirestore db;
@@ -42,11 +42,9 @@ public class UserDashboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Verificar si hay sesión activa
-        if (com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser() == null) {
-            // Si no hay sesión, manda al usuario al Login (MainActivity)
-            startActivity(new android.content.Intent(this, MainActivity.class));
-            finish(); // Cierra esta Activity para que no vuelva atrás presionando el botón "Back"
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
             return;
         }
         setContentView(R.layout.activity_user_dashboard);
@@ -56,6 +54,7 @@ public class UserDashboardActivity extends AppCompatActivity {
 
         btnSubirFoto = findViewById(R.id.btnSubirFoto);
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
+        btnVerCatalogoApi = findViewById(R.id.btnVerCatalogoApi); // <-- Asegúrate de agregarlo en tu XML
         lvRutinas = findViewById(R.id.lvRutinas);
         ivProgressPhoto = findViewById(R.id.ivProgressPhoto);
 
@@ -67,6 +66,13 @@ public class UserDashboardActivity extends AppCompatActivity {
         buscarMiRutina();
 
         btnSubirFoto.setOnClickListener(v -> selectorImagen.launch("image/*"));
+
+        // <-- Evento para abrir el catálogo de ejercicios consumido por Retrofit
+        if (btnVerCatalogoApi != null) {
+            btnVerCatalogoApi.setOnClickListener(v -> {
+                startActivity(new Intent(this, CatalogoEjerciciosActivity.class));
+            });
+        }
 
         btnCerrarSesion.setOnClickListener(v -> {
             new AlertDialog.Builder(this)

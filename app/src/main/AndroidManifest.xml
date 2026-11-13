@@ -51,6 +51,8 @@
             android:name=".views.ConfigActivity"
             android:exported="false" />
 
+        <activity android:name=".views.CatalogoEjerciciosActivity" android:exported="false" />
+
     </application>
 
 </manifest>

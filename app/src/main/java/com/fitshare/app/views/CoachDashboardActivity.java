@@ -29,7 +29,7 @@ import java.util.UUID;
 
 public class CoachDashboardActivity extends AppCompatActivity {
     private ListView lvDatos;
-    private Button btnAsignar, btnAlumnos, btnCerrar;
+    private Button btnAsignar, btnAlumnos, btnCerrar, btnVerCatalogoApi; // <-- Añadido botón para API
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private ArrayList<String> listaDatos;
@@ -57,6 +57,9 @@ public class CoachDashboardActivity extends AppCompatActivity {
         btnAlumnos = findViewById(R.id.btnVerEstudiantes);
         btnCerrar = findViewById(R.id.btnCerrarSesionCoach);
 
+        // Inicializar el botón del catálogo de la API (Asegúrate de agregarlo en tu activity_coach_dashboard.xml)
+        btnVerCatalogoApi = findViewById(R.id.btnVerCatalogoApi);
+
         listaDatos = new ArrayList<>();
         listaIds = new ArrayList<>();
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listaDatos);
@@ -66,6 +69,13 @@ public class CoachDashboardActivity extends AppCompatActivity {
 
         btnAsignar.setOnClickListener(v -> mostrarDialogoRutina(null, "", "", "", ""));
         btnAlumnos.setOnClickListener(v -> cargarAlumnos());
+
+        // Evento para abrir el catálogo de ejercicios consumido por la API REST (Retrofit + Glide)
+        if (btnVerCatalogoApi != null) {
+            btnVerCatalogoApi.setOnClickListener(v -> {
+                startActivity(new Intent(this, CatalogoEjerciciosActivity.class));
+            });
+        }
 
         btnCerrar.setOnClickListener(v -> {
             new AlertDialog.Builder(this)

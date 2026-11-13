@@ -76,4 +76,13 @@
         android:backgroundTint="#CF6679"
         android:textColor="#FFFFFF"
         android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/btnVerCatalogoApi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🏋️ Ver Catálogo Global de Ejercicios (API)"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#3F51B5"
+        android:textColor="@android:color/white" />
 </LinearLayout>
